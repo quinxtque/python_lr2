@@ -14,22 +14,21 @@ while True:
     step = float(input("Введите шаг интегрирования dx: "))
 
     if step <= 0 or b <= 0 or a <= 0:
-        print("\nОшибка\n")
+        print("\nВведены неверные пределы интегрирования\n")
         continue
 
     N = int(input("\nВведите количество точек N: "))
-        
-    # вывод ответа 
+
+    # вывод ответа
     print("\n\nРезультат:\n")
 
     if method == 1:
         print("Метод прямоугольников   ", f"{Rectangle_method(a, b, step):<.6g} ед. кв.")
     elif method == 2:
-        #print("Метод трапеций:", trapezoid_method(a, b, step))
-        print("Метод трапеций          ", f"{Trapezoid_method(a, b, step):<.6g} ед. кв.\n")
+        print("Метод трапеций          ", f"{Trapezoid_method(a, b, step):<.6g} ед. кв.")
     else:
         print("Нет такого метода")
-        
+
     from_y, to_y = min_max(a, b, step)
 
     M = 0
@@ -40,7 +39,7 @@ while True:
         y = random.uniform(from_y, to_y)
 
         if xy_check(x, y):
-            M += 1   
+            M += 1
 
     L = abs(b - a) * abs(to_y - from_y)
 
