@@ -1,7 +1,6 @@
 from math import tan, log, sin
 import random
 
-# функции, ограничивающие фигуру
 # нижняя функция
 def fun1(x):
     return log(x) + sin(x)
@@ -10,11 +9,6 @@ def fun1(x):
 def fun2(x):
     return abs(tan(0.2 * x)) + x
 
-# функция для расчёта площади фигуры методом Монте-Карло
-def Monte_Carlo_method(L, M, N):
-    return L * M / N
-
-# функция для расчёта площади методом прямоугольников
 def Rectangle_method(a, b, step):
     full_square = 0
     x = a
@@ -27,32 +21,33 @@ def Rectangle_method(a, b, step):
 
     return full_square
 
-# функция для расчёта площади методом трапеций
 def Trapezoid_method(a, b, step):
     s = 0
     x = a
 
     while x <= b:
-        y = fun2(x) + fun2(x + step) - (fun1(x) + fun1(x + step)) 
+        y = fun2(x) + fun2(x + step) - (fun1(x) + fun1(x + step))
         mini_square = y / 2 * step
         s += mini_square
         x += step
 
     return s
 
-# функция для нахождения минимального значения нижней функции и максимального значения верхней функции
+def Monte_Carlo_method(L, M, N):
+    return L * M / N
+
 def min_max(a, b, step):
     x = a
     min_gx = fun1(x)
     max_fx = fun2(x)
-    
+
     while x <= b:
         if min_gx > fun1(x):
             min_gx = fun1(x)
         if max_fx < fun2(x):
             max_fx = fun2(x)
         x += step
-            
+
     return [min_gx, max_fx]
 
 # функция для проверки точки на попадание в фигуру
@@ -74,7 +69,7 @@ while True:
     step = float(input("Введите шаг интегрирования dx: "))
 
     if step <= 0 or b <= 0 or a <= 0:
-        print("\nОшибка\n")
+        print("\nВведены неверные пределы интегрирования\n")
         continue
 
     N = int(input("\nВведите количество точек N: "))
@@ -106,4 +101,4 @@ while True:
 
     # вывод ответа
     print("Метод Монте-Карло       ", f"{Monte_Carlo_method(L, M, N):<.6g} ед. кв.\n")
-    print("-" * 40, "\n")
+    print('-' * 40, '\n')
