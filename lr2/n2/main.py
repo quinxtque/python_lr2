@@ -11,9 +11,9 @@ while True:
     # ввод данных
     a = float(input("\nВведите нижний предел интегрирования a: "))
     b = float(input("Введите верхний предел интегрирования b: "))
-    step = float(input("Введите шаг интегрирования dx: "))
+    dx = float(input("Введите шаг интегрирования dx: "))
 
-    if step <= 0 or b <= 0 or a <= 0:
+    if dx <= 0 or b <= 0 or a <= 0:
         print("\nВведены неверные пределы интегрирования\n")
         continue
 
@@ -23,13 +23,13 @@ while True:
     print("\n\nРезультат:\n")
 
     if method == 1:
-        print("Метод прямоугольников   ", f"{Rectangle_method(a, b, step):<.6g} ед. кв.")
+        print("Метод прямоугольников   ", f"{Rectangle_method(a, b, dx):<.6g} ед. кв.")
     elif method == 2:
-        print("Метод трапеций          ", f"{Trapezoid_method(a, b, step):<.6g} ед. кв.")
+        print("Метод трапеций          ", f"{Trapezoid_method(a, b, dx):<.6g} ед. кв.")
     else:
         print("Нет такого метода")
 
-    from_y, to_y = min_max(a, b, step)
+    from_y, to_y = min_max(a, b, dx)
 
     M = 0
 
