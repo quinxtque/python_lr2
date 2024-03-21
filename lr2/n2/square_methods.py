@@ -19,17 +19,17 @@ def Monte_Carlo_method(L, M, N):
 
 
 # функция для расчёта площади методом прямоугольников
-def Rectangle_method(a, b, step):
-    full_square = 0
+def Rectangle_method(a, b, dx):
+    s = 0
     x = a
 
     while x <= b:
         y = fun2(x) - fun1(x)
-        mini_square = y * step
-        full_square += mini_square
-        x += step
+        ds = y * dx
+        s += ds
+        x += dx
 
-    return full_square
+    return s
 
 
 # функция для расчёта площади методом трапеций
@@ -47,7 +47,7 @@ def Trapezoid_method(a, b, step):
 
 
 # функция для нахождения минимального значения нижней функции и максимального значения верхней функции
-def min_max(a, b, step):
+def min_max(a, b, dx):
     x = a
     min_gx = fun1(x)
     max_fx = fun2(x)
@@ -57,7 +57,7 @@ def min_max(a, b, step):
             min_gx = fun1(x)
         if max_fx < fun2(x):
             max_fx = fun2(x)
-        x += step
+        x += dx
 
     return [min_gx, max_fx]
 
